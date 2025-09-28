@@ -1,0 +1,53 @@
+server:
+  port: 8090
+
+spring:
+  output:
+    ansi:
+      enabled: always
+  thymeleaf:
+    cache: false
+  web:
+    resources:
+      cache:
+        cachecontrol:
+          no-cache: true
+        use-last-modified: false
+
+halo:
+  security:
+    basic-auth:
+      disabled: false
+  console:
+    proxy:
+      endpoint: http://localhost:3500/
+#      enabled: true  # pnpm dev 启动时，需要打开
+      enabled: false  # jar 启动时，需要打开
+  uc:
+    proxy:
+      endpoint: http://localhost:4000/
+#      enabled: true
+      enabled: false  # jar 启动时，需要打开
+  plugin:
+    runtime-mode: development # development, deployment
+  work-dir: ${user.home}/halo2-dev
+logging:
+  level:
+    run.halo.app: DEBUG
+    web: DEBUG
+    org.springframework.boot.autoconfigure.web.reactive.error.AbstractErrorWebExceptionHandler: DEBUG
+springdoc:
+  cache:
+    disabled: true
+  api-docs:
+    enabled: true
+    version: OPENAPI_3_0
+  swagger-ui:
+    enabled: true
+  show-actuator: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

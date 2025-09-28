@@ -1,0 +1,12 @@
+plugins {
+    id 'groovy-gradle-plugin'
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.release = 21
+    options.encoding = 'UTF-8'
+    options.compilerArgs += [
+            '-Xlint:-unchecked',     // 忽略未检查警告
+            '-Xlint:-deprecation'    // 忽略已过时API警告
+    ]
+}
